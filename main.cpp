@@ -18,7 +18,7 @@ public:
 private:
     void fill_and_print_queen_poisitions_impl()
     {
-        if (queen_positions.size() == size)
+        if (all_queens_are_placed())
         {
             print_all_queen_poisitions();
             return;
@@ -30,6 +30,10 @@ private:
                 fill_and_print_queen_poisitions_impl();
                 queen_positions.pop_back();
             }
+    }
+    bool all_queens_are_placed() const
+    {
+        return queen_positions.size() == size;
     }
     bool queen_position_is_legal(int new_x)
     {
