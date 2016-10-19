@@ -26,7 +26,6 @@ namespace
     void initialize(int chess_board_size)
     {
         size = chess_board_size;
-        queen_positions.clear();
         queen_positions.reserve(size);
     }
     void fill_and_print_all_queen_poisitions()
