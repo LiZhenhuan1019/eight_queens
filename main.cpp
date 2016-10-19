@@ -23,13 +23,21 @@ private:
             print_all_queen_poisitions();
             return;
         }
-        for (int pos = 0; pos < size; ++pos)
-            if (queen_position_is_legal(pos))
+        for (int column = 0; column < size; ++column)
+            if (queen_position_is_legal(column))
             {
-                queen_positions.push_back(pos);
+                place_queen_at_column(column);
                 fill_and_print_queen_poisitions_impl();
-                queen_positions.pop_back();
+                remove_queen_at_last_column();
             }
+    }
+    void place_queen_at_column(int column)
+    {
+        queen_positions.push_back(column);
+    }
+    void remove_queen_at_last_column()
+    {
+        queen_positions.pop_back();
     }
     bool all_queens_are_placed() const
     {
@@ -54,10 +62,10 @@ private:
     {
         ostream << "solution " << ++counts << '\n';
         for (int line = 0; line < queen_positions.size(); ++line)
-            print_line(line);
+            print_row(line);
         ostream << '\n';
     }
-    void print_line(int line)
+    void print_row(int line)
     {
         int pos_x = queen_positions[line];
         for (int x = 0; x < pos_x; ++x)
